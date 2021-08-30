@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+    </head>
+    <body>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.song.label }}<br>
+                {{ form.song(size=32) }}<br>
+            </p>
+            <p>
+                {{ form.artist.label }}<br>
+                {{ form.artist(size=32) }}<br>
+            </p>
+            <p>
+                {{ form.submit() }}
+            </p>
+            {% if result %}
+            <table>
+                <tr>
+                    <th>Intro</th>
+                    <th>Verse</th>
+                    <th>Prechorus</th>
+                    <th>Chorus</th>
+                    <th>Outtro</th>
+                </tr>
+                {% for entry in result %}
+                <tr>
+                    {% for tag in ["Intro","V","P","C","O"] %}
+                    <th>{% for prog in entry[tag] %}{{ prog }}{% endfor %}</th>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </form>
+    </body>
+</html>
